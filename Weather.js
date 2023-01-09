@@ -3,14 +3,20 @@ async function getData(city) {
 
     url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
 
-    const result = await fetch(url);
-    result.json().then(json => {
-        console.log(json);
-        return json;
-    })
+    try {
+        const result = await fetch(url);
+            result.json().then(json => {
+            console.log(json);
+            // return json;
+        })
+    }
+    catch (error)   {
+        console.log('There was an error', error);
+    }
 }
 
 getData("Bengaluru");
+//getData("inikbcw");
 
 // Console Output:
 //
