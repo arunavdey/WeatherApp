@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-import "./ResultPage.css";
+// import "../../public/styles.css";
 
 import Graph from "./Graph";
 
@@ -31,17 +31,13 @@ export default function ResultPage(props) {
         <Graph />
       </div>
     );
-  } else if (res == 404){
+  } else if (res == 404) {
     return (
       <div>
         <h1 className="result">City not found</h1>
       </div>
     );
   } else {
-    return (
-      <div>
-      </div>
-    );
-
+    return <div></div>;
   }
 }

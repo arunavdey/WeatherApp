@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import "./SearchBar.css";
+
+// import "../../public/styles.css";
 
 export default function SearchBar(props) {
   const [inputData, setInputData] = useState("");
