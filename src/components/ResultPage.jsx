@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
+import "./ResultPage.css";
+
 export default function ResultPage(props) {
   const [res, setRes] = useState("");
-  // useEffect runs on every render
   useEffect(() => {
     axios
       .get(
@@ -14,17 +15,26 @@ export default function ResultPage(props) {
           "aac0e38a5a3c567cd3e79a723bf39fc3"
       )
       .then((response) => {
-        console.log(response.status);
-        setRes(response);
-        // console.log(res);
+        setRes(response.status);
       })
       .catch((err) => {
-        console.log(err);
+        setRes(err.response.status);
       });
-  }, []);
+  }, [res]);
+
+  if (res == 200) {
   return (
     <div>
-      <h1>This is the Result Page</h1>
+      <h1 className="result">{props.cityName}</h1>
     </div>
   );
+
+  } else {
+  return (
+    <div>
+      <h1 className="result">City not found</h1>
+    </div>
+  );
+    
+  }
 }

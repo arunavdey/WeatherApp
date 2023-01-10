@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
-// import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import "../components/SearchBar.css";
+import "./SearchBar.css";
 
 export default function SearchBar(props) {
   const [inputData, setInputData] = useState("");
@@ -27,9 +26,10 @@ export default function SearchBar(props) {
   // adds the searched city to the localStorage
   function handleSearch() {
     if (inputData) {
-      if(city.indexOf(inputData) == -1) {
-        localStorage.setItem("lists", JSON.stringify([...city, inputData]));
-        setCity([...city, inputData]);
+      console.log(typeof inputData)
+      if (city.indexOf(inputData) == -1) {
+        localStorage.setItem("lists", JSON.stringify([...city, inputData.toLowerCase()]));
+        setCity([...city, inputData.toLowerCase()]);
       }
       setInputData("");
       navigate("/results");
@@ -37,7 +37,7 @@ export default function SearchBar(props) {
   }
 
   useEffect(() => {
-    localStorage.setItem('lists', JSON.stringify(city))
+    localStorage.setItem("lists", JSON.stringify(city));
   }, [city]);
 
   return (
