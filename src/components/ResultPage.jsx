@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-// import "../../public/styles.css";
-
 import Graph from "./Graph";
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function ResultPage(props) {
   const [res, setRes] = useState(200);
@@ -14,7 +14,7 @@ export default function ResultPage(props) {
         "https://api.openweathermap.org/data/2.5/weather?q=" +
           props.cityName +
           "&appid=" +
-          "aac0e38a5a3c567cd3e79a723bf39fc3"
+          API_KEY
       )
       .then((response) => {
         setRes(response.status);

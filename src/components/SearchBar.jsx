@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-// import "../../public/styles.css";
-
 export default function SearchBar(props) {
   const [inputData, setInputData] = useState("");
   const [city, setCity] = useState(getLocalItems);
@@ -27,10 +25,22 @@ export default function SearchBar(props) {
   // adds the searched city to the localStorage
   function handleSearch() {
     if (inputData) {
-      console.log(typeof inputData)
-      if (city.indexOf(inputData) == -1) {
-        localStorage.setItem("lists", JSON.stringify([...city, inputData.toLowerCase()]));
+      console.log(typeof inputData);
+      let idx = city.indexOf(inputData)
+      if (idx == -1) {
+        localStorage.setItem(
+          "lists",
+          JSON.stringify([...city, inputData.toLowerCase()])
+        );
         setCity([...city, inputData.toLowerCase()]);
+      } else {
+        city.splice(idx, 1);
+        localStorage.setItem(
+          "lists",
+          JSON.stringify([...city, inputData.toLowerCase()])
+        );
+        setCity([...city, inputData.toLowerCase()]);
+
       }
       setInputData("");
       navigate("/results");
@@ -39,7 +49,7 @@ export default function SearchBar(props) {
 
   useEffect(() => {
     localStorage.setItem("lists", JSON.stringify(city));
-  }, [city]);
+  }, []);
 
   return (
     <div className="search">
@@ -65,6 +75,10 @@ export default function SearchBar(props) {
               }}
             />
           )}
+          onChange={(e) => {
+            setInputData(e.target.innerText);
+            props.setCityName(e.target.innerText);
+          }}
         />
 
         <button className="search-button" onClick={handleSearch}>

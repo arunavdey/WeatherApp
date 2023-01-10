@@ -1,9 +1,7 @@
 import { React, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-// import { Link } from 'react-router';
 import SearchBar from "./SearchBar";
 import ResultPage from "./ResultPage";
-// import "../../public/styles.css";
 
 function Header() {
   const [cityName, setCityName] = useState("");
