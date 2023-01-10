@@ -8,7 +8,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import '../components/SearchBar.css'
 
 
-export default function SearchBar() {
+export default function SearchBar(props) {
 
   const [inputData, setInputData] = useState('');
   const [city, setCity] = useState(getLocalItems);
@@ -36,6 +36,7 @@ function handleSearch() {
   {
     localStorage.setItem('lists', JSON.stringify([...city, inputData]))
     setCity([...city, inputData]);
+    props.setCityName(inputData)
     setInputData('');
     navigate("/results");
 
@@ -61,7 +62,7 @@ function handleSearch() {
           <TextField
             {...params}
             value={inputData} 
-            onChange={(e) => setInputData(e.target.value) }
+            onChange={(e) => {setInputData(e.target.value);props.setCityName(e.target.value) }}
             label= 'Enter city name'
             InputProps={{
               ...params.InputProps,

@@ -1,4 +1,4 @@
-import React from "react";
+import {React,useState} from "react";
 import { BrowserRouter,Routes,Route, Link } from "react-router-dom";
 // import { Link } from 'react-router';
 import SearchBar from "./SearchBar"
@@ -6,6 +6,7 @@ import ResultPage from "./ResultPage"
 import "../components/Header.css"
 
 function Header() {
+  const [cityName,setCityName]=useState("")
   return (
     <div>
     <header>
@@ -17,8 +18,8 @@ function Header() {
     </div>
         <BrowserRouter>
           <Routes>
-            <Route path="/search" element={<SearchBar />}></Route>
-            <Route exact path="/results" element={<ResultPage />}></Route>
+            <Route path="/search" element={<SearchBar setCityName={setCityName}/>}></Route>
+            <Route exact path="/results" element={<ResultPage cityName={cityName}/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
