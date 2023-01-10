@@ -4,8 +4,10 @@ import { useEffect } from "react";
 
 import "./ResultPage.css";
 
+import Graph from "./Graph";
+
 export default function ResultPage(props) {
-  const [res, setRes] = useState("");
+  const [res, setRes] = useState(200);
   useEffect(() => {
     axios
       .get(
@@ -23,18 +25,23 @@ export default function ResultPage(props) {
   }, [res]);
 
   if (res == 200) {
-  return (
-    <div>
-      <h1 className="result">{props.cityName}</h1>
-    </div>
-  );
-
+    return (
+      <div>
+        <h1 className="result">{props.cityName}</h1>
+        <Graph />
+      </div>
+    );
+  } else if (res == 404){
+    return (
+      <div>
+        <h1 className="result">City not found</h1>
+      </div>
+    );
   } else {
-  return (
-    <div>
-      <h1 className="result">City not found</h1>
-    </div>
-  );
-    
+    return (
+      <div>
+      </div>
+    );
+
   }
 }
