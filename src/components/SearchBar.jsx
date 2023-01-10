@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
+// import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import "../components/SearchBar.css";
 
@@ -12,31 +12,33 @@ export default function SearchBar(props) {
   const [city, setCity] = useState(getLocalItems);
   const navigate = useNavigate();
 
+  // retrieves the search history from localStorage
   function getLocalItems() {
     let list = localStorage.getItem("lists");
     console.log(list);
 
     if (list) {
-      // console.log(JSON.parse(localStorage.getItem('lists')));
       return JSON.parse(localStorage.getItem("lists"));
     } else {
       return [];
     }
   }
 
+  // adds the searched city to the localStorage
   function handleSearch() {
     if (inputData) {
-      localStorage.setItem("lists", JSON.stringify([...city, inputData]));
-      setCity([...city, inputData]);
-      // props.setCityName(inputData)
+      if(city.indexOf(inputData) == -1) {
+        localStorage.setItem("lists", JSON.stringify([...city, inputData]));
+        setCity([...city, inputData]);
+      }
       setInputData("");
       navigate("/results");
     }
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem('lists', JSON.stringify(city))
-  // }, [city]);
+  useEffect(() => {
+    localStorage.setItem('lists', JSON.stringify(city))
+  }, [city]);
 
   return (
     <div className="search">
@@ -44,8 +46,6 @@ export default function SearchBar(props) {
         <Autocomplete
           freeSolo
           id="free-solo-2-demo"
-          // value={inputData}
-          // onChange={(e) => setInputData(e.target.value) }
           style={{ width: "50%" }}
           disableClearable
           options={city.reverse()}
