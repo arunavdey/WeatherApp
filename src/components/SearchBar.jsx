@@ -36,7 +36,7 @@ function handleSearch() {
   {
     localStorage.setItem('lists', JSON.stringify([...city, inputData]))
     setCity([...city, inputData]);
-    props.setCityName(inputData)
+    // props.setCityName(inputData)
     setInputData('');
     navigate("/results");
 
