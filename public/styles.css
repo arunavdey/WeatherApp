@@ -1,22 +1,23 @@
-.nav-tabs{
-    display: flex;
-    gap:10px;
-    justify-content: center;
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  text-decoration: none;
 }
-.result {
+.cityname {
   text-transform: capitalize;
 }
-.search-input{
-    /* background-color: black; */
-    /* display: inline-flex; */
-    display: flex;
-    justify-content: center;
+.search-input {
+  /* background-color: black; */
+  /* display: inline-flex; */
+  display: flex;
+  justify-content: center;
 }
 
-.search-button{
-    width:10%;
+.search-button {
+  width: 10%;
 }
 
-.search{
-    gap:10px;
+.search {
+  gap: 10px;
 }

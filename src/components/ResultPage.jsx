@@ -27,14 +27,13 @@ export default function ResultPage(props) {
   if (res == 200) {
     return (
       <div>
-        <h1 className="result">{props.cityName}</h1>
-        <Graph />
+        <Graph cityName={props.cityName}/>
       </div>
     );
   } else if (res == 404) {
     return (
       <div>
-        <h1 className="result">City not found</h1>
+        <h1 className="cityname">City not found</h1>
       </div>
     );
   } else {

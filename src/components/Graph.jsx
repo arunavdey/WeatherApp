@@ -1,8 +1,11 @@
 import React from "react";
 
-function Graph() {
+function Graph(props) {
   return (
-    <h1>Graph</h1>
+    <div>
+      <h1>Graph</h1>
+      <h1>{props.cityName}</h1>
+    </div>
   );
 }
 
