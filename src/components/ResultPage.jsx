@@ -7,7 +7,7 @@ import Graph from "./Graph";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function ResultPage(props) {
-  const [res, setRes] = useState(200);
+  const [res, setRes] = useState(0);
   useEffect(() => {
     axios
       .get(
@@ -24,19 +24,21 @@ export default function ResultPage(props) {
       });
   }, [res]);
 
-  if (res == 200) {
+  if (res === 200) {
     return (
       <div>
         <Graph cityName={props.cityName}/>
       </div>
     );
-  } else if (res == 404) {
+  } else if (res === 404) {
     return (
       <div>
         <h1 className="cityname">City not found</h1>
       </div>
     );
   } else {
-    return <div></div>;
+    return <div>
+      <h4> Fetching Results... </h4>
+    </div>
   }
 }
