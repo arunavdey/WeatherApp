@@ -7,7 +7,7 @@ import ResultPage from "./ResultPage";
 function App() {
   const [cityName, setCityName] = useState("");  
   return (
-    <div class="weathercontainer">
+    <div className="weathercontainer">
             <BrowserRouter>
               <Routes>
                 <Route

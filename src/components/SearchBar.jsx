@@ -52,7 +52,7 @@ export default function SearchBar(props) {
 
   return (
     <div className="search-container">
-      <h1 class="search-heading">
+      <h1 className="search-heading">
         WeatherMan
       </h1>
       <div className="search-input">
@@ -74,10 +74,6 @@ export default function SearchBar(props) {
               InputProps={{
                 ...params.InputProps,
                 type: "search",
-              }}
-              onKeyDown={(e) => {
-                if(e.key === 'Enter') 
-                handleSearch()
               }}
             />
           )}

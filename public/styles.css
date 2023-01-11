@@ -1,3 +1,10 @@
+.graph {
+  border-radius: 10px;
+  height: 20rem;
+  width: 0rem;
+  border: 10px;
+}
+
 .nav-tabs {
   display: flex;
   gap: 10px;
@@ -49,7 +56,8 @@ html {
 body {
   font-size: 1.4rem;
   /* background-image: linear-gradient(39deg, #ffdb58, transparent); */
-  background-color: #ffdb58
+  background-color: #ffdb58;
+  padding: 2rem 10rem;
 }
 
 a {
@@ -78,13 +86,11 @@ a {
   margin: auto;
 }
 .gb-button{
-  height: 1px;
+  margin: auto 15px;
 }
 
 .gb-image{
-  
   margin: auto 0px auto 0px;
-
 }
 
 .css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root {
@@ -154,3 +160,39 @@ a {
  font-size: 12px;
 }
 
+/* C TO F TOGGLE BUTTON */
+.checkbox {
+  
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  box-sizing: border-box;
+  width: 50px;
+  height: 26px;
+  background-color:#111;
+  display: flex;
+  border-radius:50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball{
+  transform: translateX(24px);
+}
