@@ -3,11 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 
 import Graph from "./Graph";
+import Weather from "./Weather"
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function ResultPage(props) {
   const [res, setRes] = useState(0);
+  const [response, setResponse] = useState({})
   useEffect(() => {
     axios
       .get(
@@ -18,6 +20,7 @@ export default function ResultPage(props) {
       )
       .then((response) => {
         setRes(response.status);
+        setResponse(response)
       })
       .catch((err) => {
         setRes(err.response.status);
@@ -28,6 +31,7 @@ export default function ResultPage(props) {
     return (
       <div>
         <a href="/">Go back</a>
+        <Weather cityName ={props.cityName} weather={response}/>
         <Graph cityName={props.cityName}/>
       </div>
     );
