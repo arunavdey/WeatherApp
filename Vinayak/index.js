@@ -6,15 +6,6 @@ const axios = require('axios');
 
 const https = require('node:https');
 
-// populates temps array with random temperatures
-function fillTempsArray(temps) {
-    for (let i = 0; i < 39; i++) {
-        //creates a random number between 15 and 24
-        x = Number(((Math.random() * 10) + 15).toFixed(2));
-        temps.push(x);
-    }
-}
-
 // converts the date received in unix format from API to readable
 function convertUnixToDateTime (unix) {
     var fullDate = new Date(unix * 1000);
@@ -27,11 +18,22 @@ function convertUnixToDateTime (unix) {
     return result;
 }
 
+// populates temps array with random temperatures
+function fillTempsArray(temp, len) {
+    let arr = [temp];
+    for (let i = 0; i < len - 1; i++) {
+        //creates a random number between 15 and 24
+        x = Number(((Math.random() * 10) + 15).toFixed(2));
+        arr.push(x);
+    }
+    return arr;
+}
+
 // returns an array with 40 dates, one lesser than the other, 
 // starting date is current date
-function fillDateArray (unixDate) {
-    let arr = []
-    for (let i = 0; i < 40; i++) {
+function fillDateArray (unixDate, len) {
+    let arr = [];
+    for (let i = 0; i < len; i++) {
         arr.push(convertUnixToDateTime(unixDate - (i*24*60*60)));
     }
     return arr;
@@ -39,9 +41,13 @@ function fillDateArray (unixDate) {
 
 // given the dateTime array and temps array, it combines a value from
 // each to create x, y  coordinates
-function graphInputGenerator (temps, dateTime) {
+function graphInputGenerator (temp, unix, len) {
+    let dateTime = fillDateArray(unix, len);
+    // console.log(dateTime);
+    let temps = fillTempsArray(temp, len);
+    // console.log(temps);
     let result = [];
-    for (let i = 39; i >= 0; i--) {
+    for (let i = len-1; i >= 0; i--) {
         let coord = {x: dateTime[i], y: temps[i]};
         result.push(coord);
     }
@@ -106,25 +112,12 @@ app.get("/", function(req, res){
       )
       .then((response) => {
 
-        // initialise temps array with it's only real value
-        let temps = [response.data.main.temp];
-        // populate the rest 39 values in temps array
-        fillTempsArray(temps);
-        // console.log(temps);    
-        // console.log(temps.length); 
+        console.log("hi");
 
-        // store date from API response, it's in unix format
-        let unixDate = response.data.dt;
-        // stores dateTime array which has 
-        // the date and time for the past 40 days
-        let dateTime = fillDateArray(unixDate);
-        // console.log(dateTime);
-        // console.log(dateTime.length)
-
-        // stores the graph input converted frpm temperature 
-        // and date arrays to coordinate format
-        let graphInput = graphInputGenerator(temps, dateTime);
-        // console.log(graphInput);
+        len = 30;
+        let graphInput = graphInputGenerator(response.data.main.temp, response.data.dt, len);
+        console.log(graphInput);
+        //console.log(graphInput.length);
 
         // Below code is for testing cToFGraphInput and fToCGraphInput
         // cToFGraphInput(graphInput);
@@ -135,11 +128,32 @@ app.get("/", function(req, res){
         res.send("Sup");
 
         }
-      ) .catch((err) => {
+      ).catch((err) => {
         setRes(err.response.status);
       });
 });
 
-app.listen(3000, function(){
-    console.log("Server is running on port 3000");
+app.listen(3001, function(){
+    console.log("Server is running on port 3001");
 })
+
+
+
+
+        // initialise temps array with it's only real value
+        // let temps = [response.data.main.temp];
+        // // populate the rest 39 values in temps array
+        // fillTempsArray(temps);
+        // // console.log(temps);    
+        // // console.log(temps.length); 
+
+        // // store date from API response, it's in unix format
+        // let unixDate = response.data.dt;
+        // // stores dateTime array which has 
+        // // the date and time for the past 40 days
+        // let dateTime = fillDateArray(unixDate);
+        // console.log(dateTime);
+        // console.log(dateTime.length)
+
+        // stores the graph input converted frpm temperature 
+        // and date arrays to coordinate format
