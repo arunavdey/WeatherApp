@@ -26,8 +26,8 @@ export default function SearchBar(props) {
   function handleSearch() {
     if (inputData) {
       console.log(typeof inputData);
-      let idx = city.indexOf(inputData)
-      if (idx == -1) {
+      let idx = city.indexOf(inputData);
+      if (idx === -1) {
         localStorage.setItem(
           "lists",
           JSON.stringify([...city, inputData.toLowerCase()])
@@ -40,7 +40,6 @@ export default function SearchBar(props) {
           JSON.stringify([...city, inputData.toLowerCase()])
         );
         setCity([...city, inputData.toLowerCase()]);
-
       }
       setInputData("");
       navigate("/results");
@@ -57,7 +56,7 @@ export default function SearchBar(props) {
         <Autocomplete
           freeSolo
           id="free-solo-2-demo"
-          style={{ width: "80%" }}
+          style={{ width: "80%", borderColor: "white" }}
           disableClearable
           options={city.reverse()}
           renderInput={(params) => (
@@ -72,6 +71,10 @@ export default function SearchBar(props) {
               InputProps={{
                 ...params.InputProps,
                 type: "search",
+              }}
+              onKeyDown={(e) => {
+                if(e.key === 'Enter') 
+                handleSearch()
               }}
             />
           )}

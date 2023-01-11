@@ -22,23 +22,25 @@ export default function ResultPage(props) {
       .catch((err) => {
         setRes(err.response.status);
       });
-  }, [res]);
+  }, [props.cityName, res]);
 
   if (res === 200) {
     return (
       <div>
+        <a href="/">Go back</a>
         <Graph cityName={props.cityName}/>
       </div>
     );
   } else if (res === 404) {
     return (
       <div>
-        <h1 className="cityname">City not found</h1>
+        <a href="/">Go back</a>
+        <h1 className="city">City not found</h1>
       </div>
     );
   } else {
     return <div>
-      <h4> Fetching Results... </h4>
+        <a href="/">Go back</a>
     </div>
   }
 }

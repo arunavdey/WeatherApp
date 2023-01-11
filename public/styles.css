@@ -5,19 +5,27 @@
   text-decoration: none;
 }
 
-.cityname {
+.city {
   text-transform: capitalize;
 }
 
 .search-input {
-  /* background-color: black; */
-  /* display: inline-flex; */
   display: flex;
   justify-content: center;
 }
 
 .search-button {
+  /* cursor: pointer; */
+  /* -webkit-transition-duration: 0.4s; */
+  /* transition-duration: 0.4s; */
+
+  background-color: #665823;
+  color: #ffdb58;
+  font-weight: 900;
+  font-size: 20px;
   width: 20%;
+  margin-left: 20px;
+  border-radius: 10px;
 }
 
 .search {
@@ -27,23 +35,34 @@
 /* -------------------------------------- */
 
 html {
-  font-size: 62.5%;
+  font-family: Helvetica;
+  /* font-size: 62.5%; */
 }
+
 body {
   font-size: 1.4rem;
-  background-image: linear-gradient(39deg, #ffdb58, transparent );
+  /* background-image: linear-gradient(39deg, #ffdb58, transparent); */
+  background-color: #ffdb58
 }
-a{
+
+a {
   text-decoration: none;
 }
-a :hover{
-  color:red;
+
+a :hover {
+  color: red;
 }
-.a_button{
-  border: 2px solid red;
-  padding: 10px 20px;
+
+.a_button {
+  font-size: 20px;
+  color: black;
+  border: 2px solid ;
+  background-color: ;
+  padding: 10px 40px;
   border-radius: 10px;
+  margin: 10px;
 }
+
 .content__wrapper {
   max-width: 1200px;
   width: 90%;
@@ -55,14 +74,15 @@ a :hover{
 .menu-icon__line {
   width: 1.5rem;
   height: 0.2rem;
-  background-color: #0C383E;
+  background-color: #0c383e;
   display: block;
 }
-.menu-icon__line:before, .menu-icon__line:after {
-  content: '';
+.menu-icon__line:before,
+.menu-icon__line:after {
+  content: "";
   width: 1.5rem;
   height: 0.2rem;
-  background-color: #0C383E;
+  background-color: #0c383e;
   display: inline-block;
   position: relative;
 }
@@ -73,16 +93,22 @@ a :hover{
 .menu-icon__line:after {
   top: -1.8rem;
 }
+
 .heading {
+  font-family: 'Pacifico', cursive;
+  padding: 20px;
+  color: #332c12;
+  /* color: #998335; */
+  /* color: #ffdb58; */
+
   width: 90%;
-  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px #ffdb58;
+  font-size: 3.5rem;
   font-weight: bold;
-  margin: 0;
   line-height: 1.7rem;
-  margin: 0 auto;
   text-align: center;
 }
-.subheading{
+.subheading {
   width: 90%;
   font-weight: bold;
   padding-top: 10px;
@@ -107,20 +133,27 @@ a :hover{
 }
 .weathercontainer {
   width: 50rem;
-  height: 50rem;
-  border-radius: 50%;
+  /* height: 50rem; */
+  /* border-radius: 50%; */
   margin: 0 auto;
   position: relative;
   top: 10.5rem;
 }
+
 .scroller {
   float: right;
   top: -15%;
 }
 .scroller .page-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   letter-spacing: 0.5rem;
   display: inline-block;
   float: left;
   margin-top: 1rem;
+}
+
+.css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root {
+    padding: 9px;
+    background-color: #ccaf46;
+    color: white;
 }
