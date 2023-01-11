@@ -57,7 +57,7 @@ export default function SearchBar(props) {
         <Autocomplete
           freeSolo
           id="free-solo-2-demo"
-          style={{ width: "50%" }}
+          style={{ width: "80%" }}
           disableClearable
           options={city.reverse()}
           renderInput={(params) => (
