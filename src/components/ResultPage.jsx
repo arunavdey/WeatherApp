@@ -38,7 +38,7 @@ export default function ResultPage(props) {
     );
   } else {
     return <div>
-      <h4> Fetching Results...</h4>
+      <h4> Fetching Results... </h4>
     </div>
   }
 }
