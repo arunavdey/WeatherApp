@@ -1,14 +1,27 @@
-import React, { useState, useEffect } from "react";
-
-import Header from "./Header";
-import Footer from "./Footer";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import ResultPage from "./ResultPage";
+
 
 function App() {
+  const [cityName, setCityName] = useState("");  
   return (
-    <div>
-      <Header />
-    </div>
+    <div class="weathercontainer">
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  path="/"
+                  element={<SearchBar setCityName={setCityName} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/results"
+                  element={<ResultPage cityName={cityName} />}
+                ></Route>
+              </Routes>
+            </BrowserRouter>
+          </div>
   );
 }
 

@@ -17,7 +17,7 @@ export default function Info(props) {
         },
       }}
     >
-        <Paper className="weather" elevation={3}>
+        <Paper className="weather" elevation={9}>
             <div className='top'>
                 <div>
                     <p className='city-name'>{props.response.name}</p>

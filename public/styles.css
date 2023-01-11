@@ -9,9 +9,16 @@
   text-transform: capitalize;
 }
 
+.search-container{
+  margin-top: 20%;
+}
+
 .search-input {
+
   display: flex;
-  justify-content: center;
+  width: 60%;
+  margin: 0px auto 0px  auto;
+
 }
 
 .search-button {
@@ -49,108 +56,35 @@ a {
   text-decoration: none;
 }
 
-a :hover {
-  color: red;
-}
 
-.a_button {
-  font-size: 20px;
-  color: black;
-  border: 2px solid ;
-  /* background-color: ; */
-  padding: 10px 40px;
-  border-radius: 10px;
-  margin: 10px;
-}
-
-.content__wrapper {
-  max-width: 1200px;
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
-  position: relative;
-  padding: 4.5rem 0;
-}
-.menu-icon__line {
-  width: 1.5rem;
-  height: 0.2rem;
-  background-color: #0c383e;
-  display: block;
-}
-.menu-icon__line:before,
-.menu-icon__line:after {
-  content: "";
-  width: 1.5rem;
-  height: 0.2rem;
-  background-color: #0c383e;
-  display: inline-block;
-  position: relative;
-}
-.menu-icon__line:before {
-  left: 0.5rem;
-  top: -0.6rem;
-}
-.menu-icon__line:after {
-  top: -1.8rem;
-}
-
-.heading {
+.search-heading {
   font-family: 'Pacifico', cursive;
   padding: 20px;
   color: #332c12;
-  top:10.5rem;
-  /* color: #998335; */
-  /* color: #ffdb58; */
-
-  width: 90%;
   text-shadow: 2px 2px 4px #ffdb58;
   font-size: 3.5rem;
   font-weight: bold;
   line-height: 1.7rem;
   text-align: center;
 }
-.subheading {
-  width: 90%;
-  font-weight: bold;
-  padding-top: 10px;
-  line-height: 1.7rem;
-  margin: 0 auto;
-  text-align: center;
+
+.result-heading{
   display: flex;
-  gap: 10px;
   justify-content: center;
-  text-decoration: none;
+
+  font-family: 'Pacifico', cursive;
+  padding: 20px;
+  color: #332c12;
+  margin: auto;
 }
-.coords {
-  font-size: 1rem;
-  display: inline-block;
-  transform: rotate(-90deg) translateY(50%);
-  /* float: left; */
-  position: relative;
-  top: 50rem;
-  letter-spacing: 0.2rem;
-  left: -11.5rem;
-  margin: 0;
-}
-.weathercontainer {
-  width: 50rem;
-  /* height: 50rem; */
-  /* border-radius: 50%; */
-  margin: 0 auto;
-  position: relative;
-  /* top: 10.5rem; */
+.gb-button{
+  height: 1px;
 }
 
-.scroller {
-  float: right;
-  top: -15%;
-}
-.scroller .page-title {
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.5rem;
-  display: inline-block;
-  /* float: left; */
-  margin-top: 1rem;
+.gb-image{
+  
+  margin: auto 0px auto 0px;
+
 }
 
 .css-1qqsdnr-MuiAutocomplete-root .MuiOutlinedInput-root {
@@ -220,9 +154,3 @@ a :hover {
  font-size: 12px;
 }
 
-.result-heading{
-  font-family: 'Pacifico', cursive;
-  padding: 20px;
-  color: #332c12;
-  margin: 0px;
-}

@@ -31,11 +31,11 @@ export default function ResultPage(props) {
 
   if (res === 200) {
     return (
-      <div>
-        <h1 class="result-heading">
-              WeatherMan
-        </h1>
-        <a href="/">Go back</a>
+      <div className="result-container">
+        <div className="result-heading">
+          <a className="gb-button" href="/"> <img alt="gb"className="gb-image"src="icons/arrow_back.png"/></a>
+          <h1>WeatherMan</h1>
+        </div>
         <Info response={response}/>
         {/* <Weather cityName ={props.cityName} weather={response}/> */}
 
@@ -44,14 +44,20 @@ export default function ResultPage(props) {
     );
   } else if (res === 404) {
     return (
-      <div>
-        <a href="/">Go back</a>
+      <div className="result-container">
+        <div className="result-heading">
+          <a className="gb-button" href="/">Go back</a>
+          <h1>WeatherMan</h1>
+        </div>
         <h1 className="city">City not found</h1>
       </div>
     );
   } else {
-    return <div>
-        <a href="/">Go back</a>
+    return <div className="result-container">
+        <div className="result-heading">
+          <a className="gb-button" href="/">Go back</a>
+          <h1>WeatherMan</h1>
+        </div>
     </div>
   }
 }

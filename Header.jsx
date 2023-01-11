@@ -5,7 +5,21 @@ import ResultPage from "./ResultPage";
 // import "font-awesome/css/font-awesome-min.css";
 
 function Header() {
-  const [cityName, setCityName] = useState("");
+  const [cityName, setCityName] = useState("");    <div class="weathercontainer">
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  path="/"
+                  element={<SearchBar setCityName={setCityName} />}
+                ></Route>
+                <Route
+                  exact
+                  path="/results"
+                  element={<ResultPage cityName={cityName} />}
+                ></Route>
+              </Routes>
+            </BrowserRouter>
+          </div>
   return (
     <div class="weathercontainer">
             <BrowserRouter>
