@@ -52,6 +52,9 @@ export default function SearchBar(props) {
 
   return (
     <div className="search">
+            <h1 class="heading">
+              WeatherMan
+            </h1>
       <div className="search-input">
         <Autocomplete
           freeSolo

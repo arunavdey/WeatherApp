@@ -57,7 +57,7 @@ a :hover {
   font-size: 20px;
   color: black;
   border: 2px solid ;
-  background-color: ;
+  /* background-color: ; */
   padding: 10px 40px;
   border-radius: 10px;
   margin: 10px;
@@ -98,6 +98,7 @@ a :hover {
   font-family: 'Pacifico', cursive;
   padding: 20px;
   color: #332c12;
+  top:10.5rem;
   /* color: #998335; */
   /* color: #ffdb58; */
 
@@ -124,7 +125,7 @@ a :hover {
   font-size: 1rem;
   display: inline-block;
   transform: rotate(-90deg) translateY(50%);
-  float: left;
+  /* float: left; */
   position: relative;
   top: 50rem;
   letter-spacing: 0.2rem;
@@ -137,7 +138,7 @@ a :hover {
   /* border-radius: 50%; */
   margin: 0 auto;
   position: relative;
-  top: 10.5rem;
+  /* top: 10.5rem; */
 }
 
 .scroller {
@@ -148,7 +149,7 @@ a :hover {
   font-family: "Playfair Display", serif;
   letter-spacing: 0.5rem;
   display: inline-block;
-  float: left;
+  /* float: left; */
   margin-top: 1rem;
 }
 
@@ -156,4 +157,72 @@ a :hover {
     padding: 9px;
     background-color: #ccaf46;
     color: white;
+}
+
+/* Info file CSS */
+.weather{
+  background-color: #806e2c;
+  color: white ;
+}
+
+.top,
+.bottom{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.city-name{
+ font-weight: 600;
+ font-size: 28px;
+ line-height: 1;
+ margin: 0;
+ letter-spacing: 1px;
+}
+
+.weather-description{
+ font-weight: 400;
+ font-size: 18px;
+ text-transform: capitalize;
+ line-height: 1;
+ margin:0;
+}
+.weather-icon{
+ width: 100px;
+}
+
+.temperature{
+ font-weight: 600;
+ font-size: 70px;
+ width: auto;
+ letter-spacing: -5px;
+ margin: 10px 0;
+}
+.details{
+ width: 100%;
+ padding-left: 20px
+}
+
+.parameter-row{
+ display: flex;
+ justify-content: space-between;
+}
+
+.parameter-label{
+ text-align: left;
+ font-weight: 400;
+ font-size: 12px;
+}
+
+.parameter-value{
+ text-align: right;
+ font-weight: 600;
+ font-size: 12px;
+}
+
+.result-heading{
+  font-family: 'Pacifico', cursive;
+  padding: 20px;
+  color: #332c12;
+  margin: 0px;
 }

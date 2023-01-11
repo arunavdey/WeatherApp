@@ -7,19 +7,7 @@ import ResultPage from "./ResultPage";
 function Header() {
   const [cityName, setCityName] = useState("");
   return (
-    <div class="container">
-      <div class="landing-page-container">
-        <div class="content__wrapper">
-          <header>
-            <div class="subheading">
-            </div>
-          </header>
-
-          <div class="weathercontainer">
-            <h1 class="heading">
-              WeatherMan
-            </h1>
-            
+    <div class="weathercontainer">
             <BrowserRouter>
               <Routes>
                 <Route
@@ -34,9 +22,6 @@ function Header() {
               </Routes>
             </BrowserRouter>
           </div>
-        </div>
-      </div>
-    </div>
   );
 }
 

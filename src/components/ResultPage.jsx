@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import Graph from "./Graph";
 import Weather from "./Weather"
+import Info from "./Info";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -20,7 +21,8 @@ export default function ResultPage(props) {
       )
       .then((response) => {
         setRes(response.status);
-        setResponse(response)
+        setResponse(response.data)
+        console.log(response.data)
       })
       .catch((err) => {
         setRes(err.response.status);
@@ -30,8 +32,13 @@ export default function ResultPage(props) {
   if (res === 200) {
     return (
       <div>
+        <h1 class="result-heading">
+              WeatherMan
+        </h1>
         <a href="/">Go back</a>
-        <Weather cityName ={props.cityName} weather={response}/>
+        <Info response={response}/>
+        {/* <Weather cityName ={props.cityName} weather={response}/> */}
+
         <Graph cityName={props.cityName}/>
       </div>
     );
