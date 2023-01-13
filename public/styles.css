@@ -196,3 +196,12 @@ a {
 .checkbox:checked + .label .ball{
   transform: translateX(24px);
 }
+
+.date-picker-container{
+  display: flex;
+  margin: 10px 0;
+}
+
+.date-picker{
+  margin-right: 80px;
+}

@@ -13,7 +13,7 @@ export default function SearchBar(props) {
   // retrieves the search history from localStorage
   function getLocalItems() {
     let list = localStorage.getItem("lists");
-    console.log(list);
+    // console.log(list);
 
     if (list) {
       return JSON.parse(localStorage.getItem("lists"));

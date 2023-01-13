@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect } from "react";
-
 import Graph from "./Graph";
 import Info from "./Info";
 
@@ -10,6 +8,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 export default function ResultPage(props) {
   const [res, setRes] = useState(0);
   const [response, setResponse] = useState({});
+
   useEffect(() => {
     axios
       .get(
@@ -38,15 +37,15 @@ export default function ResultPage(props) {
           </a>
           <h1>WeatherMan</h1>
           <div>
-            <input type="checkbox" className="checkbox" on/>
-            <label for="checkbox" className="label">
+            <input type="checkbox" className="checkbox" id = "toggle" on/>
+            <label htmlFor="toggle" className="label">
               <div className="ball" />
             </label>
           </div>
         </div>
         <Info response={response} />
 
-        <Graph cityName={props.cityName} />
+        <Graph />
       </div>
     );
   } else if (res === 404) {

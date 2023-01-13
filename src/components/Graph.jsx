@@ -1,97 +1,158 @@
-import React from "react";
+import React, { useState ,useEffect } from "react";
 import Chart from "chart.js/auto";
+import DatePicker from "react-date-picker";
 
-function Graph(props) {
-  let graphInput = [
-    { x: "2/12/2022 20:31", y: 18.41 },
-    { x: "3/12/2022 20:31", y: 17.64 },
-    { x: "4/12/2022 20:31", y: 24.75 },
-    { x: "5/12/2022 20:31", y: 20.99 },
-    { x: "6/12/2022 20:31", y: 21.5 },
-    { x: "7/12/2022 20:31", y: 17.49 },
-    { x: "8/12/2022 20:31", y: 17.6 },
-    { x: "9/12/2022 20:31", y: 18.97 },
-    { x: "10/12/2022 20:31", y: 22.14 },
-    { x: "11/12/2022 20:31", y: 21.15 },
-    { x: "12/12/2022 20:31", y: 23.22 },
-    { x: "13/12/2022 20:31", y: 24.44 },
-    { x: "14/12/2022 20:31", y: 18.5 },
-    { x: "15/12/2022 20:31", y: 24.48 },
-    { x: "16/12/2022 20:31", y: 19.15 },
-    { x: "17/12/2022 20:31", y: 19.44 },
-    { x: "18/12/2022 20:31", y: 19.32 },
-    { x: "19/12/2022 20:31", y: 19.53 },
-    { x: "20/12/2022 20:31", y: 21.67 },
-    { x: "21/12/2022 20:31", y: 15.29 },
-    { x: "22/12/2022 20:31", y: 19.67 },
-    { x: "23/12/2022 20:31", y: 17.43 },
-    { x: "24/12/2022 20:31", y: 15.76 },
-    { x: "25/12/2022 20:31", y: 23.59 },
-    { x: "26/12/2022 20:31", y: 20.45 },
-    { x: "27/12/2022 20:31", y: 20.76 },
-    { x: "28/12/2022 20:31", y: 18.52 },
-    { x: "29/12/2022 20:31", y: 23.83 },
-    { x: "30/12/2022 20:31", y: 22.37 },
-    { x: "31/12/2022 20:31", y: 16.06 },
-    { x: "1/1/2023 20:31", y: 21.08 },
-    { x: "2/1/2023 20:31", y: 21.96 },
-    { x: "3/1/2023 20:31", y: 23.09 },
-    { x: "4/1/2023 20:31", y: 20.92 },
-    { x: "5/1/2023 20:31", y: 21.31 },
-    { x: "6/1/2023 20:31", y: 22.62 },
-    { x: "7/1/2023 20:31", y: 16.96 },
-    { x: "8/1/2023 20:31", y: 20.78 },
-    { x: "9/1/2023 20:31", y: 22.35 },
-    { x: "10/1/2023 20:31", y: 12.47 },
-  ];
+// Global Variables
+var graphInput = [];
+const number_of_days = 30;
 
-  // function that generates chart given input such as in above format
-  function generateChart(graphInput) {
-    const plugin = {
-      id: 'customCanvasBackgroundColor',
-      beforeDraw: (chart, args, options) => {
-        const {ctx} = chart;
-        ctx.save();
-        ctx.globalCompositeOperation = 'destination-over';
-        ctx.fillStyle = options.color || '#99ffff';
-        ctx.fillRect(0, 0, chart.width, chart.height);
-        ctx.restore();
-      }
-    };
-    new Chart(document.getElementById("myChart"), {
-      type: "line",
-      data: {
-        datasets: [
-          {
-            label: "Temperature",
-            data: graphInput,
-            borderColor: "#1d2021",
-            backgroundColor: "#1d2021",
-            borderWidth: 3,
-          },
-        ],
-      },
-      options: {
-        // responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          customCanvasBackgroundColor: {
-            color: "#fbf1c7",
+function Graph() {
+  graphInputGenerator(new Date())
+
+  var start_date = new Date();
+  start_date.setDate(start_date.getDate() - number_of_days + 1);
+
+  const [userStartDate, setUserStartDate] = useState(start_date);
+  const [userEndDate, setUserEndDate] = useState(new Date());
+
+    useEffect(()=>{
+      const one_day = 1000*60*60*24;
+
+      let start_index = Math.ceil((userStartDate.getTime() - start_date.getTime())/(one_day));
+      let end_index = Math.floor(((new Date()).getTime() - userEndDate.getTime())/(one_day));
+
+      if(start_index >= number_of_days)
+        start_index = number_of_days - 1;
+
+      if(end_index > number_of_days)
+        end_index = number_of_days;
+
+      let plugin = {
+        id: 'customCanvasBackgroundColor',
+        beforeDraw: (chart, options) => {
+          const {ctx} = chart;
+          ctx.save();
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.fillStyle = options.color || '#ffffff';
+          ctx.fillRect(0, 0, chart.width, chart.height);
+          ctx.restore();
+        }};
+      
+      var myChart = new Chart(document.getElementById("myChart"), {
+        type: "line",
+        data: {
+          datasets: [
+            {
+              label: "Temperature",
+              data: graphInput.slice(start_index, number_of_days - end_index),
+              borderColor: "#1d2021",
+              backgroundColor: "#1d2021",
+              borderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          // responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            customCanvasBackgroundColor: {
+              color: "#fbf1c7",
+            },
           },
         },
-      },
-      plugins: [plugin],
-    });
+        plugins: [plugin],
+      });
+
+      return () => {
+        myChart.destroy()
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[userStartDate,userEndDate]);
+
+    function graphInputGenerator (date) {
+      let dateTime = fillDateArray(date,number_of_days);
+      let temps = fillTempsArray(number_of_days);
+
+      for (let i = number_of_days-1; i >= 0; i--) {
+          let coord = {x: dateTime[i], y: temps[i]};
+          graphInput.push(coord);
+      }
   }
 
-  return (
-    <div>
-      <canvas id="myChart" className="graph">
-        {" "}
-      </canvas>
-      {generateChart(graphInput)}
-    </div>
-  );
+  // returns an array with 30 dates, one lesser than the other, 
+  // starting date is current date
+  function convertToDateTime (fullDate) {
+    var hours = fullDate.getHours()
+    var minutes = fullDate.getMinutes()
+    var date = fullDate.getDate()
+    var month = fullDate.getMonth() + 1
+    var year = fullDate.getFullYear()
+    var result = String(date) + "/" + String(month) + "/" + String(year) + " " + String(hours) + ":" + String(minutes);
+    return result;
+  }
+
+  function fillDateArray (fullDate, len) {
+    let arr = [];
+    arr.push(convertToDateTime(fullDate));
+    for (let i = 0; i < len-1; i++) {
+      fullDate.setDate(fullDate.getDate() - 1)
+      arr.push(convertToDateTime(fullDate));
+    }
+    return arr;
+  }
+
+  // populates temps array with random temperatures
+  function fillTempsArray(len) {
+    let arr = [];
+    for (let i = 0; i < len; i++) {
+        //creates a random number between 15 and 24
+        const x = Number(((Math.random() * 10) + 15).toFixed(2));
+        arr.push(x);
+    }
+    return arr;
+  }
+
+    return (
+      <div>
+        <div className = 'date-picker-container'>
+          <div className = 'date-picker From'>
+            <label htmlFor = "date-from">From:    </label>  
+            <DatePicker className = "date-from"
+                        selected = {userStartDate} 
+                        dateFormat = "dd/MM/yyyy" 
+                        value = {userStartDate}
+                        onChange = {(date)=> {
+                          let earliest_date = new Date();
+                          earliest_date.setDate(earliest_date.getDate() - number_of_days);
+                      
+                          if(date <= new Date() && date <= userEndDate  && date > earliest_date){
+                          setUserStartDate(date);
+                        }
+                        }} />
+          </div>
+          <div className = 'date-picker To'>
+          <label htmlFor = "date-to">To:    </label>      
+          <DatePicker className = "date-to" 
+                      selected = {userEndDate} 
+                      dateFormat = "dd/MM/yyyy" 
+                      value = {userEndDate}
+                      onChange = {(date)=> {
+                        if(date <= new Date() && date >= userStartDate){
+                          setUserEndDate(date)
+                         }
+                        }} />
+          </div>
+          <div className = 'date-picker'>
+            <p> Data Retrieved: Last {number_of_days} days</p>
+          </div>
+        </div>
+        <div>
+          <canvas id="myChart" className="graph">
+            {" "}
+          </canvas>
+        </div>
+      </div>
+    );
 }
 
 export default Graph;
