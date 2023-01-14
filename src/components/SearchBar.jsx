@@ -25,7 +25,6 @@ export default function SearchBar(props) {
   // adds the searched city to the localStorage
   function handleSearch() {
     if (inputData) {
-      console.log(typeof inputData);
       let idx = city.indexOf(inputData);
       if (idx === -1) {
         localStorage.setItem(
@@ -59,6 +58,7 @@ export default function SearchBar(props) {
         <Autocomplete
           freeSolo
           id="free-solo-2-demo"
+          value = {inputData}
           style={{ width: "80%", borderColor: "white" }}
           disableClearable
           options={city.reverse()}
@@ -67,6 +67,7 @@ export default function SearchBar(props) {
               {...params}
               value={inputData}
               onChange={(e) => {
+                console.log("Called by textfield" + e.target)
                 setInputData(e.target.value);
                 props.setCityName(e.target.value);
               }}
@@ -78,6 +79,7 @@ export default function SearchBar(props) {
             />
           )}
           onChange={(e) => {
+            console.log("Called by Autocomplete" + e.target.innerText)
             setInputData(e.target.innerText);
             props.setCityName(e.target.innerText);
           }}

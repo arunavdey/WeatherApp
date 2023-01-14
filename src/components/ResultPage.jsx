@@ -6,8 +6,22 @@ import Info from "./Info";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function ResultPage(props) {
+  var toggled = false
   const [res, setRes] = useState(0);
   const [response, setResponse] = useState({});
+  const [isToggled, toggle] = useState(toggled);
+  const [unit, setUnit] = useState('metric');
+
+  function handleToggle(){
+    console.log(isToggled)
+    toggle(!isToggled)
+    if(isToggled){
+      setUnit('imperial');
+    }
+
+    else
+      setUnit('metric');
+  }
 
   useEffect(() => {
     axios
@@ -17,7 +31,7 @@ export default function ResultPage(props) {
           "&appid=" +
           API_KEY +
           "&units=" +
-          "metric"
+          unit
       )
       .then((response) => {
         setRes(response.status);
@@ -26,7 +40,7 @@ export default function ResultPage(props) {
       .catch((err) => {
         setRes(err.response.status);
       });
-  }, [props.cityName, res]);
+  }, [props.cityName, res, unit]);
 
   if (res === 200) {
     return (
@@ -37,7 +51,8 @@ export default function ResultPage(props) {
           </a>
           <h1>WeatherMan</h1>
           <div>
-            <input type="checkbox" className="checkbox" id = "toggle" on/>
+            <input type="checkbox" className="checkbox" id = "toggle" defaultChecked = {isToggled} onClick = {handleToggle}/>
+            {console.log("in html:" + isToggled)}
             <label htmlFor="toggle" className="label">
               <div className="ball" />
             </label>
