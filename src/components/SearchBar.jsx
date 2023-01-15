@@ -21,7 +21,6 @@ export default function SearchBar(props) {
       return [];
     }
   }
-
   // adds the searched city to the localStorage
   function handleSearch() {
     if (inputData) {
@@ -47,7 +46,8 @@ export default function SearchBar(props) {
 
   useEffect(() => {
     localStorage.setItem("lists", JSON.stringify(city));
-  }, []);
+    // console.log(localStorage.getItem("lists"))
+  }, [city]);
 
   return (
     <div className="search-container">
@@ -67,7 +67,7 @@ export default function SearchBar(props) {
               {...params}
               value={inputData}
               onChange={(e) => {
-                console.log("Called by textfield" + e.target)
+                // console.log("Called by textfield" + e.target.value)
                 setInputData(e.target.value);
                 props.setCityName(e.target.value);
               }}
@@ -78,8 +78,8 @@ export default function SearchBar(props) {
               }}
             />
           )}
-          onChange={(e) => {
-            console.log("Called by Autocomplete" + e.target.innerText)
+          onChange = {(e) => {
+            // console.log("Called by Autocomplete" + e.target.innerText)
             setInputData(e.target.innerText);
             props.setCityName(e.target.innerText);
           }}

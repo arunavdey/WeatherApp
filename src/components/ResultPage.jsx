@@ -3,18 +3,18 @@ import axios from "axios";
 import Graph from "./Graph";
 import Info from "./Info";
 
+// Global Variables
 const API_KEY = process.env.REACT_APP_API_KEY;
+var isToggled= false;
 
 export default function ResultPage(props) {
-  var toggled = false
-  const [res, setRes] = useState(0);
+  const [status, setStatus] = useState(0);
   const [response, setResponse] = useState({});
-  const [isToggled, toggle] = useState(toggled);
   const [unit, setUnit] = useState('metric');
 
   function handleToggle(){
-    console.log(isToggled)
-    toggle(!isToggled)
+    isToggled = !isToggled;
+
     if(isToggled){
       setUnit('imperial');
     }
@@ -34,15 +34,15 @@ export default function ResultPage(props) {
           unit
       )
       .then((response) => {
-        setRes(response.status);
+        setStatus(response.status);
         setResponse(response.data);
       })
       .catch((err) => {
-        setRes(err.response.status);
+        setStatus(err.response.status);
       });
-  }, [props.cityName, res, unit]);
+  }, [props.cityName, unit]);
 
-  if (res === 200) {
+  if (status === 200) {
     return (
       <div className="result-container">
         <div className="result-heading">
@@ -52,18 +52,17 @@ export default function ResultPage(props) {
           <h1>WeatherMan</h1>
           <div>
             <input type="checkbox" className="checkbox" id = "toggle" defaultChecked = {isToggled} onClick = {handleToggle}/>
-            {console.log("in html:" + isToggled)}
-            <label htmlFor="toggle" className="label">
+            <label htmlFor="toggle" className="label-slider">
               <div className="ball" />
             </label>
           </div>
         </div>
-        <Info response={response} />
+        <Info response={response} unit={unit}/>
 
         <Graph />
       </div>
     );
-  } else if (res === 404) {
+  } else if (status === 404) {
     return (
       <div className="result-container">
         <div className="result-heading">

@@ -3,6 +3,16 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 // import "./info.css"
 export default function Info(props) {
+  var temperature_unit, wind_speed;
+  if(props.unit === 'imperial'){
+    temperature_unit = "°F";
+    wind_speed = "mph";
+  }
+  else{
+    temperature_unit = "°C";
+    wind_speed = "m/s";
+  }
+
   return (
     <Box
       sx={{
@@ -10,7 +20,7 @@ export default function Info(props) {
         flexWrap: 'wrap',
         '& > :not(style)': {
           m: 1,
-          width: 300,
+          width: 400,
         //   height: 300,
           margin:"20px auto 5rem auto",
           padding: "0 20px 20px 20px"
@@ -26,15 +36,15 @@ export default function Info(props) {
                 <img alt="weather" className='weather-icon' src={`icons/${props.response.weather[0].icon}.png`}/>
             </div>
             <div className='bottom'>
-                <p className='temperature'>{Math.round(props.response.main.temp)}°C</p>
+                <p className='temperature'>{Math.round(props.response.main.temp)}{temperature_unit}</p>
                 <div className='details'>
                     <div className='parameter-row'>
                         <span className='parameter-label'>Feels like</span>
-                        <span className='parameter-value'>{Math.round(props.response.main.feels_like)}°C</span>
+                        <span className='parameter-value'>{Math.round(props.response.main.feels_like)}{temperature_unit}</span>
                     </div>
                     <div className='parameter-row'>
                         <span className='parameter-label'>Wind</span>
-                        <span className='parameter-value'>{props.response.wind.speed} m/s</span>
+                        <span className='parameter-value'>{props.response.wind.speed} {wind_speed}</span>
                     </div>
                     <div className='parameter-row'>
                         <span className='parameter-label'>Humidity</span>
